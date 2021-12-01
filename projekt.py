@@ -48,10 +48,13 @@ Morseovka = {
     "7":"--...",
     "8":"---..",
     "9":"----.",
+    " ":""
 }
 
-def FromMorse(text):
-    return text
+def FromMorse(text,preklad = ""):
+    for char in text:
+        preklad = preklad + Morseovka[char] + "/"
+    return preklad
 
 def ToMorse(text):
     return text
@@ -65,7 +68,7 @@ else:
     jak = input("1 pokud z morseovky do abeceny, 2 pokud naopak: ")
     if jak =="1":
         text = input("napiš morseovku: ")
-        print(FromMorse())
+        print(FromMorse(text))
     elif jak =="2":
         text = input("napiš text: ")
-        print(ToMorse())
+        print(ToMorse(text))
