@@ -12,32 +12,47 @@ VÝSTUP
 
 Morseovka = {
     "a":".-",
+    "á":".-",
     "b":"-...",
     "c":"-.-.",
+    "č":"-.-.",
     "d":"-..",
+    "ď":"-..",
     "e":".",
+    "é":".",
+    "ě":".",
     "f":"..-.",
     "g":"--.",
     "h":"....",
     "ch":"----",
     "i":"..",
+    "í":"..",
     "j":".---",
     "k":"-.-",
     "l":".-..",
     "m":"--",
     "n":"-.",
+    "ň":"-.",
     "o":"---",
+    "ó":"---",
     "p":".--.",
     "q":"--.-",
     "r":".-.",
+    "ř":".-.",
     "s":"...",
+    "š":"...",
     "t":"-",
+    "ť":"-",
     "u":"..-",
+    "ů":"..-",
+    "ú":"..-",
     "v":"...-",
     "w":".--",
     "x":"-..-",
     "y":"-.--",
+    "ý":"-.--",
     "z":"--..",
+    "ž":"--..",
     "0":"-----",
     "1":".----",
     "2":"..---",
@@ -48,13 +63,19 @@ Morseovka = {
     "7":"--...",
     "8":"---..",
     "9":"----.",
-    " ":""
+    " ":"",
+    ".":"/"
 }
 
 def FromMorse(text,preklad = ""):
-    for char in text:
-        preklad = preklad + Morseovka[char] + "/"
+    for char in text.lower():
+        if char in Morseovka:
+            preklad = preklad + Morseovka[char] + "/"
+        else:
+            preklad = preklad + char + "/"
     return preklad
+#udělat aby před : atd. nebylo /
+
 
 def ToMorse(text):
     return text
