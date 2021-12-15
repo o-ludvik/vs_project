@@ -9,7 +9,7 @@ VSTUP
 VÝSTUP
 • Zakódovaná, případně dekódovaná morseovka
 """
-
+#dictionary morseovy abecedy
 Morseovka = {
     "á":".-",
     "a":".-",
