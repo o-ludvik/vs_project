@@ -11,48 +11,48 @@ VÝSTUP
 """
 
 Morseovka = {
-    "a":".-",
     "á":".-",
+    "a":".-",
     "b":"-...",
-    "c":"-.-.",
     "č":"-.-.",
-    "d":"-..",
+    "c":"-.-.",
     "ď":"-..",
-    "e":".",
-    "é":".",
+    "d":"-..",
     "ě":".",
+    "é":".",
+    "e":".",
     "f":"..-.",
     "g":"--.",
     "h":"....",
     "ch":"----",
-    "i":"..",
     "í":"..",
+    "i":"..",
     "j":".---",
     "k":"-.-",
     "l":".-..",
     "m":"--",
-    "n":"-.",
     "ň":"-.",
-    "o":"---",
+    "n":"-.",
     "ó":"---",
+    "o":"---",
     "p":".--.",
     "q":"--.-",
-    "r":".-.",
     "ř":".-.",
-    "s":"...",
+    "r":".-.",
     "š":"...",
-    "t":"-",
+    "s":"...",
     "ť":"-",
-    "u":"..-",
-    "ů":"..-",
+    "t":"-",
     "ú":"..-",
+    "ů":"..-",
+    "u":"..-",
     "v":"...-",
     "w":".--",
     "x":"-..-",
-    "y":"-.--",
     "ý":"-.--",
-    "z":"--..",
+    "y":"-.--",
     "ž":"--..",
+    "z":"--..",
     "0":"-----",
     "1":".----",
     "2":"..---",
@@ -66,18 +66,19 @@ Morseovka = {
     " ":"",
     ".":"/"
 }
+inv_Morseovka = {v: k for k, v in Morseovka.items()}
 
-def FromMorse(text,preklad = ""):
+def ToMorse(text,preklad = ""):
     for char in text.lower():
         if char in Morseovka:
             preklad = preklad + Morseovka[char] + "/"
         else:
-            preklad = preklad + char + "/"
+            preklad = preklad + char
     return preklad
 #udělat aby před : atd. nebylo /
 
 
-def ToMorse(text):
+def FromMorse(text):
     return text
 
 zkama = input("přeložit ze souboru? y/n: ").lower()
