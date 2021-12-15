@@ -67,30 +67,45 @@ Morseovka = {
     ".":"/"
 }
 inv_Morseovka = {v: k for k, v in Morseovka.items()}
+special_char = [",",":","!","?","(",")"]
 
 def ToMorse(text,preklad = ""):
     for char in text.lower():
         if char in Morseovka:
             preklad = preklad + Morseovka[char] + "/"
+        elif char in special_char:
+            preklad = preklad + char + "/"
         else:
             preklad = preklad + char
-    return preklad
-#udělat aby před : atd. nebylo /
+    return preklad + "//"
+
 
 
 def FromMorse(text):
     return text
 
-zkama = input("přeložit ze souboru? y/n: ").lower()
-if zkama == "y":
+
+zkama, jak = "0","0"
+while zkama not in ["1","2"]:
+    zkama = input("přeložit ze souboru(1) nebo z terminálu(2)?\n")
+if zkama == "1":
     morse_file = open("morse.txt","r")
     morse = morse_file.read()
     morse_file.close()
-else:
-    jak = input("1 pokud z morseovky do abeceny, 2 pokud naopak: ")
+    if morse[0] == "1":
+        print(FromMorse(morse))
+    elif morse[0] == "2":
+        print(ToMorse(morse))
+    else:
+        print("přepiš morse.txt první charakter 1/2 => morseovka na abecedu(1), abeceda na morseovku(2)")
+elif zkama == "2":
+    while jak not in ["1","2"]:
+        jak = input("morseovka na abecedu(1), abeceda na morseovku(2)?\n")
     if jak =="1":
-        text = input("napiš morseovku: ")
+        text = input("napiš morseovku ve formátu .../---/...// (/ = konec písmena, // = konec slova, /// = konec věty\n ")
         print(FromMorse(text))
     elif jak =="2":
-        text = input("napiš text: ")
+        text = input("napiš text(mezery jenom mezi slovy): ")
         print(ToMorse(text))
+else:
+    print("špatný imput")

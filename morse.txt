@@ -1,0 +1,1 @@
+1první charakter 1/2 => morseovka na abecedu(1), abeceda na morseovku(2)
