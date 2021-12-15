@@ -69,6 +69,7 @@ Morseovka = {
 inv_Morseovka = {v: k for k, v in Morseovka.items()}
 special_char = [",",":","!","?","(",")"]
 
+#Zašifrovává text do morzeovy abecedy
 def ToMorse(text,preklad = ""):
     for char in text.lower():
         if char in Morseovka:
@@ -80,7 +81,7 @@ def ToMorse(text,preklad = ""):
     return preklad + "//"
 
 
-
+#Rozšifrovává kód z morzeovy abecedy 
 def FromMorse(text):
     return text
 
