@@ -72,11 +72,17 @@ Morseovka = {
     "(":"(",
     ")":")"   
 }
+#dictoanry Moresovka s invertovaným mapováním
 inv_Morseovka = {v: k for k, v in Morseovka.items()}
+#list speciálních charakteerů, které není možné přeložit
 special_char = [",",":","!","?","(",")"]
 
 #Zašifrovává text do morzeovy abecedy
 def ToMorse(text,preklad = ""):
+    """
+    Přiřazuje do proměnné preklad jednotlivé znaky s dictionary,
+    případně z listu speciálních charakterů.
+    """
     for char in text.lower():
         if char in Morseovka:
             preklad = preklad + Morseovka[char] + "/"
@@ -89,9 +95,13 @@ def ToMorse(text,preklad = ""):
 
 #Rozšifrovává kód z morzeovy abecedy 
 def FromMorse(text):
+  #ze stringu text vytvoří list souřadnic konců a začátků jedlotlivých znaků odělených "/".
   cords = [-1] + [i for i in range(len(text)) if text[i] == "/"]
+  #pro odělení jednotlivých znaků vytvoří podle souřadnic list z nasliceovaných částí stringu 
   sl = [text[cords[i] + 1: cords[i + 1]] for i in range(len(cords) - 1)] + [""]
+  #vytvoří souřadnice souřadnic pozic kde se mají nacházet tečky
   dot = [i for i in range(len(sl) - 2) if sl[i] + sl[i + 1] + sl[i + 2] == ""]
+  #navrátí list sl s přiřazenýma tečkama jako string reprezentující výslednou zprávu
   return "".join([inv_Morseovka[sl[i]] if not i in dot else "." for i in range(len(sl))])
 
 
