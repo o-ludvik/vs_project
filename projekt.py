@@ -106,7 +106,6 @@ def FromMorse(text,preklad = "", list = [], preklada = True, x = 0):
         except:
             preklad = ""
             preklada = False
-    print(list)
     for i in list:
         preklad = preklad + i
     return preklad
