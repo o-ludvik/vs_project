@@ -82,33 +82,11 @@ def ToMorse(text,preklad = ""):
 
 
 #Rozšifrovává kód z morzeovy abecedy 
-def FromMorse(text,preklad = "", list = [], preklada = True, x = 0):
-    while preklada:
-        try:
-            if text[x] != "/":
-                if text[x] not in special_char:
-                    preklad = preklad + text[x]
-                elif text[x] in special_char:
-                    list.append(text[x])
-            elif text[x] == "/":
-                list.append(inv_Morseovka[preklad])
-                preklad = ""
-                if text[x + 1] == "/":
-                    if text[x + 2] == "/":
-                        list.append(".")
-                        x += 3
-                        continue
-                    list.append(" ")
-                    x += 2
-                    continue
-            x += 1
-            continue
-        except:
-            preklad = ""
-            preklada = False
-    for i in list:
-        preklad = preklad + i
-    return preklad
+def FromMorse(text):
+  cords = [-1] + [i for i in range(len(text)) if text[i] == "/"]
+  sl = [text[cords[i] + 1: cords[i + 1]] for i in range(len(cords) - 1)] + [""]
+  dot = [i for i in range(len(sl) - 2) if sl[i] + sl[i + 1] + sl[i + 2] == ""]
+  return "".join([inv_Morseovka[sl[i]] if not i in dot else "." for i in range(len(sl))])
 
 
 zkama, jak = "0","0"
