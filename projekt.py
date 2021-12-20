@@ -64,7 +64,13 @@ Morseovka = {
     "8":"---..",
     "9":"----.",
     " ":"",
-    ".":"/"
+    ".":"/",    
+    ",":",",
+    ":":":",
+    "!":"!",
+    "?":"?",
+    "(":"(",
+    ")":")"   
 }
 inv_Morseovka = {v: k for k, v in Morseovka.items()}
 special_char = [",",":","!","?","(",")"]
@@ -78,7 +84,7 @@ def ToMorse(text,preklad = ""):
             preklad = preklad + char + "/"
         else:
             preklad = preklad + char
-    return preklad + "//"
+    return preklad
 
 
 #Rozšifrovává kód z morzeovy abecedy 
