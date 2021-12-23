@@ -9,6 +9,7 @@ VSTUP
 VÝSTUP
 • Zakódovaná, případně dekódovaná morseovka
 """
+
 # dictionary morseovy abecedy
 Morseovka = {
     "á": ".-",
@@ -67,10 +68,10 @@ Morseovka = {
     ".": "/",
     ",": ",",
     ":": ":",
-    "?": "?",
-    "!": "!",
     "(": "(",
-    ")": ")"
+    ")": ")",
+    "?": "?",
+    "!": "!"
 }
 # dictoanry Moresovka s invertovaným mapováním
 inv_Morseovka = {v: k for k, v in Morseovka.items()}
