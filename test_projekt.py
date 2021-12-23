@@ -1,5 +1,5 @@
-#Morseovka
-#Oliver Ludvík, Ondřej Sedláček, Martin Sedláček
+# Morseovka
+# Oliver Ludvík, Ondřej Sedláček, Martin Sedláček
 
 """
 Vytvořte program, který umí kódovat i dekódovat Morseovu abecedu.
@@ -9,76 +9,77 @@ VSTUP
 VÝSTUP
 • Zakódovaná, případně dekódovaná morseovka
 """
-#dictionary morseovy abecedy
+# dictionary morseovy abecedy
 Morseovka = {
-    "á":".-",
-    "a":".-",
-    "b":"-...",
-    "č":"-.-.",
-    "c":"-.-.",
-    "ď":"-..",
-    "d":"-..",
-    "ě":".",
-    "é":".",
-    "e":".",
-    "f":"..-.",
-    "g":"--.",
-    "h":"....",
-    "ch":"----",
-    "í":"..",
-    "i":"..",
-    "j":".---",
-    "k":"-.-",
-    "l":".-..",
-    "m":"--",
-    "ň":"-.",
-    "n":"-.",
-    "ó":"---",
-    "o":"---",
-    "p":".--.",
-    "q":"--.-",
-    "ř":".-.",
-    "r":".-.",
-    "š":"...",
-    "s":"...",
-    "ť":"-",
-    "t":"-",
-    "ú":"..-",
-    "ů":"..-",
-    "u":"..-",
-    "v":"...-",
-    "w":".--",
-    "x":"-..-",
-    "ý":"-.--",
-    "y":"-.--",
-    "ž":"--..",
-    "z":"--..",
-    "0":"-----",
-    "1":".----",
-    "2":"..---",
-    "3":"...--",
-    "4":"....-",
-    "5":".....",
-    "6":"-....",
-    "7":"--...",
-    "8":"---..",
-    "9":"----.",
-    " ":"",
-    ".":"/",    
-    ",":",",
-    ":":":",
-    "!":"!",
-    "?":"?",
-    "(":"(",
-    ")":")"   
+    "á": ".-",
+    "a": ".-",
+    "b": "-...",
+    "č": "-.-.",
+    "c": "-.-.",
+    "ď": "-..",
+    "d": "-..",
+    "ě": ".",
+    "é": ".",
+    "e": ".",
+    "f": "..-.",
+    "g": "--.",
+    "h": "....",
+    "ch": "----",
+    "í": "..",
+    "i": "..",
+    "j": ".---",
+    "k": "-.-",
+    "l": ".-..",
+    "m": "--",
+    "ň": "-.",
+    "n": "-.",
+    "ó": "---",
+    "o": "---",
+    "p": ".--.",
+    "q": "--.-",
+    "ř": ".-.",
+    "r": ".-.",
+    "š": "...",
+    "s": "...",
+    "ť": "-",
+    "t": "-",
+    "ú": "..-",
+    "ů": "..-",
+    "u": "..-",
+    "v": "...-",
+    "w": ".--",
+    "x": "-..-",
+    "ý": "-.--",
+    "y": "-.--",
+    "ž": "--..",
+    "z": "--..",
+    "0": "-----",
+    "1": ".----",
+    "2": "..---",
+    "3": "...--",
+    "4": "....-",
+    "5": ".....",
+    "6": "-....",
+    "7": "--...",
+    "8": "---..",
+    "9": "----.",
+    " ": "",
+    ".": "/",
+    ",": ",",
+    ":": ":",
+    "!": "!",
+    "?": "?",
+    "(": "(",
+    ")": ")"
 }
-#dictoanry Moresovka s invertovaným mapováním
+# dictoanry Moresovka s invertovaným mapováním
 inv_Morseovka = {v: k for k, v in Morseovka.items()}
-#list speciálních charakteerů, které není možné přeložit
-special_char = [",",":","!","?","(",")"]
+# list speciálních charakteerů, které není možné přeložit
+special_char = [",", ":", "!", "?", "(", ")"]
 
-#Zašifrovává text do morzeovy abecedy
-def ToMorse(text,preklad = ""):
+
+# Zašifrovává text do morzeovy abecedy
+def ToMorse(text, preklad=""):
     """
     Přiřazuje do proměnné preklad jednotlivé znaky s dictionary,
     případně z listu speciálních charakterů.
@@ -93,23 +94,35 @@ def ToMorse(text,preklad = ""):
     return preklad
 
 
-#Rozšifrovává kód z morzeovy abecedy 
+# Rozšifrovává kód z morzeovy abecedy
 def FromMorse(text):
-  #ze stringu text vytvoří list souřadnic konců a začátků jedlotlivých znaků odělených "/".
-  cords = [-1] + [i for i in range(len(text)) if text[i] == "/"]
-  #pro odělení jednotlivých znaků vytvoří podle souřadnic list z nasliceovaných částí stringu 
-  sl = [text[cords[i] + 1: cords[i + 1]] for i in range(len(cords) - 1)] + [""]
-  #vytvoří souřadnice souřadnic pozic kde se mají nacházet tečky
-  dot = [i for i in range(len(sl) - 2) if sl[i] + sl[i + 1] + sl[i + 2] == ""]
-  #navrátí list sl s přiřazenýma tečkama jako string reprezentující výslednou zprávu
-  return "".join([inv_Morseovka[sl[i]] if not i in dot else "." for i in range(len(sl))])
+    """
+    ze stringu text vytvoří list souřadnic
+    konců a začátků jedlotlivých znaků odělených "/".
+    """
+    cords = [-1] + [i for i in range(len(text)) if text[i] == "/"]
+    """
+    pro odělení jednotlivých znaků vytvoří podle
+    souřadnic list z nasliceovaných částí stringu
+    """
+    sl = [text[cords[i] + 1: cords[i + 1]]
+          for i in range(len(cords) - 1)] + [""]
+    # vytvoří souřadnice souřadnic pozic kde se mají nacházet tečky
+    dot = [i for i in range(len(sl) - 2)
+           if sl[i] + sl[i + 1] + sl[i + 2] == ""]
+    """
+    navrátí list sl s přiřazenýma tečkama
+    jako string reprezentující výslednou zprávu
+    """
+    return "".join([inv_Morseovka[sl[i]]
+                    if i not in dot else "." for i in range(len(sl))])
 
 
-zkama, jak = "0","0"
-while zkama not in ["1","2"]:
+zkama, jak = "0", "0"
+while zkama not in ["1", "2"]:
     zkama = input("přeložit ze souboru(1) nebo z terminálu(2)?\n")
 if zkama == "1":
-    morse_file = open("morse.txt","r")
+    morse_file = open("morse.txt", "r")
     morse = morse_file.read()
     morse_file.close()
     if morse[0] == "1":
@@ -117,14 +130,17 @@ if zkama == "1":
     elif morse[0] == "2":
         print(ToMorse(morse))
     else:
-        print("přepiš morse.txt první charakter 1/2 => morseovka na abecedu(1), abeceda na morseovku(2)")
+        print("přepiš morse.txt první charakter 1/2 "
+              "=> morseovka na abecedu(1), abeceda na morseovku(2)")
 elif zkama == "2":
-    while jak not in ["1","2"]:
+    while jak not in ["1", "2"]:
         jak = input("morseovka na abecedu(1), abeceda na morseovku(2)?\n")
-    if jak =="1":
-        text = input("napiš morseovku ve formátu .../---/...// (/ = konec písmena, // = konec slova, /// = konec věty\n ")
+    if jak == "1":
+        text = input(
+            "napiš morseovku ve formátu .../---/...// "
+            "(/ = konec písmena, // = konec slova, /// = konec věty\n ")
         print(FromMorse(text))
-    elif jak =="2":
+    elif jak == "2":
         text = input("napiš text(mezery jenom mezi slovy): ")
         print(ToMorse(text))
 else:
