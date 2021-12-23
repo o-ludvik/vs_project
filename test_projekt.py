@@ -1,8 +1,8 @@
 # Morseovka
 # Oliver Ludvík, Ondřej Sedláček, Martin Sedláček
 
-"""
-Vytvořte program, který umí kódovat i dekódovat Morseovu abecedu.
+"""Vytvořte program, který umí kódovat i dekódovat Morseovu abecedu.
+
 VSTUP
 • Textový řetězec v uvozovkách
 • Bude čistě na řešitelském týmu, aby vymyslelo vhodný způsob zadávání vstupu.
@@ -80,7 +80,8 @@ special_char = [",", ":", "!", "?", "(", ")"]
 
 # Zašifrovává text do morzeovy abecedy
 def ToMorse(text, preklad=""):
-    """
+    """Popis funkce.
+
     Přiřazuje do proměnné preklad jednotlivé znaky s dictionary,
     případně z listu speciálních charakterů.
     """
@@ -96,7 +97,8 @@ def ToMorse(text, preklad=""):
 
 # Rozšifrovává kód z morzeovy abecedy
 def FromMorse(text):
-    """
+    """Popis funkce.
+
     ze stringu text vytvoří list souřadnic
     konců a začátků jedlotlivých znaků odělených "/".
     """
@@ -118,30 +120,34 @@ def FromMorse(text):
                     if i not in dot else "." for i in range(len(sl))])
 
 
-zkama, jak = "0", "0"
-while zkama not in ["1", "2"]:
-    zkama = input("přeložit ze souboru(1) nebo z terminálu(2)?\n")
-if zkama == "1":
-    morse_file = open("morse.txt", "r")
-    morse = morse_file.read()
-    morse_file.close()
-    if morse[0] == "1":
-        print(FromMorse(morse))
-    elif morse[0] == "2":
-        print(ToMorse(morse))
+running = True
+while running:
+    zkama, jak = " ", " "
+    while zkama not in ["1", "2", "0"]:
+        zkama = input("přeložit ze souboru(1) nebo z terminálu(2)"
+                      "nebo ukončit program(0)?\n")
+    if zkama == "1":
+        morse_file = open("morse.txt", "r")
+        morse = morse_file.read()
+        morse_file.close()
+        if morse[0] == "1":
+            print(FromMorse(morse))
+        elif morse[0] == "2":
+            print(ToMorse(morse))
+        else:
+            print("přepiš morse.txt první charakter 1/2 "
+                  "=> morseovka na abecedu(1), abeceda na morseovku(2)")
+            running = False
+    elif zkama == "2":
+        while jak not in ["1", "2"]:
+            jak = input("morseovka na abecedu(1), abeceda na morseovku(2)?\n")
+        if jak == "1":
+            text = input(
+                "napiš morseovku ve formátu .../---/...// "
+                "(/ = konec písmena, // = konec slova, /// = konec věty\n ")
+            print(FromMorse(text))
+        elif jak == "2":
+            text = input("napiš text(mezery jenom mezi slovy): ")
+            print(ToMorse(text))
     else:
-        print("přepiš morse.txt první charakter 1/2 "
-              "=> morseovka na abecedu(1), abeceda na morseovku(2)")
-elif zkama == "2":
-    while jak not in ["1", "2"]:
-        jak = input("morseovka na abecedu(1), abeceda na morseovku(2)?\n")
-    if jak == "1":
-        text = input(
-            "napiš morseovku ve formátu .../---/...// "
-            "(/ = konec písmena, // = konec slova, /// = konec věty\n ")
-        print(FromMorse(text))
-    elif jak == "2":
-        text = input("napiš text(mezery jenom mezi slovy): ")
-        print(ToMorse(text))
-else:
-    print("špatný imput")
+        running = False
