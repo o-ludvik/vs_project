@@ -79,8 +79,8 @@ inv_Morseovka = {v: k for k, v in Morseovka.items()}
 special_char = [",", ":", "!", "?", "(", ")"]
 
 
-# Zašifrovává text do morzeovy abecedy
-def ToMorse(text, preklad=""):
+
+def ToMorse(text, preklad=""): # Zašifrovává text do morzeovy abecedy
     """Popis funkce.
 
     Přiřazuje do proměnné preklad jednotlivé znaky s dictionary,
@@ -96,8 +96,7 @@ def ToMorse(text, preklad=""):
     return preklad
 
 
-# Rozšifrovává kód z morzeovy abecedy
-def FromMorse(text):
+def FromMorse(text): # Rozšifrovává kód z morzeovy abecedy
     """Popis funkce.
 
     ze stringu text vytvoří list souřadnic
