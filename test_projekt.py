@@ -1,3 +1,4 @@
+import unittest
 # Morseovka
 # Oliver Ludvík, Ondřej Sedláček, Martin Sedláček
 
