@@ -122,7 +122,8 @@ def FromMorse(text): # Rozšifrovává kód z morzeovy abecedy
 class MyTest(unittest.TestCase):
     def test(self):
         self.assertEqual(ToMorse("ahoj"), ".-/..../---/.---/")  
-
+def test():
+	assert ToMorse("ahoj") == ".-/..../---/.---/"
 if __name__ == "__main__":
     unittest.main()
     running = True
