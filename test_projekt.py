@@ -118,8 +118,12 @@ def FromMorse(text): # Rozšifrovává kód z morzeovy abecedy
     """
     return "".join([inv_Morseovka[sl[i]]
                     if i not in dot else "." for i in range(len(sl))])
+class MyTest(unittest.TestCase):
+    def test(self):
+        self.assertEqual(ToMorse("ahoj"), ".-/..../---/.---/")  
 
 if __name__ == "__main__":
+    unittest.main()
     running = True
     while running:
         zkama, jak = " ", " "
